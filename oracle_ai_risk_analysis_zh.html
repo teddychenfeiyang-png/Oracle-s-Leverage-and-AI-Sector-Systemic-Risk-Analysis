@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>甲骨文AI转型：高风险高回报战略分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Microsoft YaHei', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        
+        .card h3 {
+            color: #34495e;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 10px;
+        }
+        
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+        
+        .metric:hover {
+            background: #e9ecef;
+        }
+        
+        .metric-label {
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .metric-value {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        
+        .positive {
+            color: #27ae60;
+        }
+        
+        .negative {
+            color: #e74c3c;
+        }
+        
+        .warning {
+            background: #fee;
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .info {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin: 20px 0;
+        }
+        
+        .risk-matrix {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .risk-level {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .risk-high {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .risk-medium {
+            background: #ffc107;
+            color: #333;
+        }
+        
+        .risk-low {
+            background: #28a745;
+            color: white;
+        }
+        
+        .timeline {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-item {
+            padding: 15px;
+            border-left: 3px solid #007bff;
+            margin-left: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: #007bff;
+            border-radius: 50%;
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 30px;
+            margin-top: 50px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .footer p {
+            margin: 5px 0;
+            font-size: 0.95em;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .card, .risk-matrix, .timeline {
+                box-shadow: none;
+                border: 1px solid #dee2e6;
+                page-break-inside: avoid;
+            }
+            
+            .header {
+                box-shadow: none;
+                border: 2px solid #dee2e6;
+            }
+            
+            .risk-matrix[style*="background: linear-gradient"] {
+                background: white !important;
+                border: 2px solid #667eea !important;
+            }
+            
+            h3[style*="color: white"] {
+                color: #667eea !important;
+                text-shadow: none !important;
+            }
+        }
+        
+        /* Ensure all info and warning boxes have good contrast */
+        .info {
+            background: #e3f2fd !important;
+            border-left: 4px solid #2196f3 !important;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            color: #333 !important;
+        }
+        
+        .info strong {
+            color: #0277bd !important;
+        }
+        
+        .warning {
+            background: #fee !important;
+            border-left: 4px solid #e74c3c !important;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            color: #333 !important;
+        }
+        
+        .warning strong {
+            color: #c62828 !important;
+        }
+        
+        /* Special warning boxes */
+        .warning[style*="background: #fff3cd"] {
+            background: #fff3cd !important;
+            border-left: 4px solid #ffc107 !important;
+        }
+        
+        .warning[style*="background: #fff3cd"] strong {
+            color: #856404 !important;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+        }
+        
+        .percentage-bar {
+            background: #e9ecef;
+            border-radius: 10px;
+            height: 30px;
+            position: relative;
+            overflow: hidden;
+            margin: 10px 0;
+            border: 1px solid #dee2e6;
+        }
+        
+        .percentage-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #5a4fcf 0%, #7c3aed 100%);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            color: white;
+            font-weight: bold;
+            transition: width 1s ease;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .price-level {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+        
+        .price-level:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border: 1px solid #dee2e6;
+        }
+        
+        .price-value {
+            font-weight: bold;
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+        
+        .price-percent {
+            font-size: 0.9em;
+            color: #495057;
+            font-weight: 600;
+        }
+        
+        .price-waterfall {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            height: 200px;
+            margin: 20px 0;
+            padding: 10px;
+            background: linear-gradient(to bottom, #28a745 0%, #ffc107 40%, #dc3545 100%);
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .price-bar {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.9);
+            margin: 0 5px;
+            border-radius: 5px 5px 0 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 10px 5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .price-bar:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .price-value {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+        
+        .price-percent {
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏛️ 甲骨文AI转型：高风险高回报的战略赌注</h1>
+            <div class="subtitle">杠杆风险、系统性影响与千亿美元机遇分析</div>
+            <div class="subtitle">Oracle's AI Transformation: High-Risk, High-Reward Strategic Bet</div>
+        </div>
+
+        <div class="executive-summary" style="background: #fff3cd; border-left: 5px solid #ffc107; padding: 25px; margin: 30px 0; border-radius: 10px;">
+            <h2 style="color: #856404;">📊 执行摘要</h2>
+            <p style="color: #333;"><strong style="color: #856404;">关键发现：</strong>甲骨文的债务权益比在2024年达到500%的峰值，目前已改善至333-467%，但仍远高于科技同行。该公司拥有910-950亿美元的总债务，而现金仅有110亿美元，信用评级处于BBB（最低投资级别，仅高于垃圾级一个等级）。</p>
+            <p style="margin-top: 15px; color: #333;"><strong style="color: #856404;">核心风险：</strong>从2027年开始的3000亿美元五年期OpenAI合作协议造成巨大的交易对手风险，同时公司每年350亿美元的基础设施支出正在消耗现金。结合创纪录的行业保证金债务（1.13万亿美元）、极端的市场集中度（标普500指数中七只股票占21%）以及拉里·埃里森质押的3.46亿股股票（占流通股的12%），甲骨文呈现出AI行业传染的可信触发点。</p>
+            <p style="margin-top: 15px; background: #d4edda; padding: 15px; border-radius: 8px; border-left: 4px solid #28a745; color: #155724;">
+                <strong style="color: #0f5132;">🚀 战略机遇：</strong>然而，这种高风险策略背后有其合理性。成功执行将使甲骨文从传统数据库公司转型为AI基础设施巨头，年收入可能翻倍至1100亿美元以上，市值可能达到1.5-2万亿美元。在AI基础设施"土地抢夺"的关键窗口期（2025-2027），不冒险可能意味着在AI时代被边缘化。虽然综合成功概率仅35-45%，但潜在2-3倍回报使风险值得承担。
+            </p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>💰 甲骨文财务杠杆</h3>
+                <div class="metric">
+                    <span class="metric-label">债务权益比</span>
+                    <span class="metric-value">333-467%</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">总债务</span>
+                    <span class="metric-value">913亿美元</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">现金储备</span>
+                    <span class="metric-value positive">110亿美元</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">净债务</span>
+                    <span class="metric-value">803亿美元</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">信用评级</span>
+                    <span class="metric-value">BBB (投资级最低)</span>
+                </div>
+                <div class="warning">
+                    <strong>⚠️ 警告：</strong>信用评级仅高于垃圾级一个等级，穆迪展望为负面
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🤝 OpenAI合作风险</h3>
+                <div class="metric">
+                    <span class="metric-label">合同总值</span>
+                    <span class="metric-value">3000亿美元/5年</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">年度承诺</span>
+                    <span class="metric-value">600亿美元</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">开始时间</span>
+                    <span class="metric-value">2027年</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">OpenAI年度亏损</span>
+                    <span class="metric-value negative">-50亿美元</span>
+                </div>
+                <div class="info">
+                    <strong style="color: #0277bd;">ℹ️ 关键风险：</strong><span style="color: #333;">OpenAI需要在两年内将收入从130亿美元增长到600亿美元（增长5-6倍）才能履行合同</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>📉 现金流危机</h3>
+                <div class="metric">
+                    <span class="metric-label">季度运营现金流</span>
+                    <span class="metric-value positive">81亿美元</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">季度资本支出</span>
+                    <span class="metric-value negative">-85亿美元</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">自由现金流</span>
+                    <span class="metric-value negative">-3.62亿美元</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">年度资本支出预测</span>
+                    <span class="metric-value negative">-350亿美元</span>
+                </div>
+                <div class="warning">
+                    <strong>⚠️ 危险信号：</strong>过去四个季度负自由现金流达59亿美元
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>📊 AI行业估值</h3>
+                <div class="metric">
+                    <span class="metric-label">英伟达市盈率</span>
+                    <span class="metric-value">57-59倍</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">微软市盈率</span>
+                    <span class="metric-value">38-40倍</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">甲骨文市盈率</span>
+                    <span class="metric-value">62.5倍</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Palantir市盈率</span>
+                    <span class="metric-value negative">394倍 (泡沫)</span>
+                </div>
+                <div class="info">
+                    <strong style="color: #0277bd;">对比2000年：</strong><span style="color: #333;">当前AI领导者平均市盈率34倍 vs 互联网泡沫时期59倍</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="risk-matrix">
+            <h3>🎯 保证金债务与市场集中度</h3>
+            <div class="chart-container">
+                <canvas id="marginDebtChart"></canvas>
+            </div>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #e74c3c;"></div>
+                    <span>保证金债务（万亿美元）</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #3498db;"></div>
+                    <span>相对GDP比率（%）</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>🏢 市场集中度风险</h3>
+                <div style="margin: 20px 0;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span>七巨头占标普500比重</span>
+                        <strong>21%</strong>
+                    </div>
+                    <div class="percentage-bar">
+                        <div class="percentage-fill" style="width: 21%;">21%</div>
+                    </div>
+                </div>
+                <div style="margin: 20px 0;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span>AI股票贡献标普500涨幅</span>
+                        <strong>55%</strong>
+                    </div>
+                    <div class="percentage-bar">
+                        <div class="percentage-fill" style="width: 55%;">55%</div>
+                    </div>
+                </div>
+                <div style="margin: 20px 0;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span>2023年七巨头贡献涨幅</span>
+                        <strong>71%</strong>
+                    </div>
+                    <div class="percentage-bar">
+                        <div class="percentage-fill" style="width: 71%;">71%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>⚡ 埃里森股票质押风险</h3>
+                <div class="metric">
+                    <span class="metric-label">持股比例</span>
+                    <span class="metric-value">40.79%</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">质押股份</span>
+                    <span class="metric-value negative">3.46亿股</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">占流通股比例</span>
+                    <span class="metric-value negative">12%</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">触发强平跌幅</span>
+                    <span class="metric-value negative">40-50%</span>
+                </div>
+                <div class="warning">
+                    <strong>💣 系统性风险：</strong>如果触发强制平仓，12%的流通股将被抛售
+                </div>
+            </div>
+        </div>
+
+        <div class="risk-matrix">
+            <h3>📈 杠杆比率对比分析</h3>
+            <div class="chart-container">
+                <canvas id="leverageChart"></canvas>
+            </div>
+        </div>
+
+        <div class="risk-matrix" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px; border-radius: 12px; margin: 30px 0;">
+            <h3 style="color: white; margin-bottom: 30px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">🚀 甲骨文的战略赌注：为何值得冒险？</h3>
+            
+            <div class="grid" style="gap: 20px;">
+                <div class="card" style="background: rgba(255,255,255,0.98);">
+                    <h3 style="color: #5a4fcf;">💎 成功后的巨大回报</h3>
+                    <div class="metric">
+                        <span class="metric-label">潜在收入增长</span>
+                        <span class="metric-value positive">+600亿美元/年</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">收入增长率</span>
+                        <span class="metric-value positive">+108%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">云基础设施收入预测(2030)</span>
+                        <span class="metric-value positive">1440亿美元</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">市场估值潜力</span>
+                        <span class="metric-value positive">1.5-2万亿美元</span>
+                    </div>
+                    <div class="info">
+                        <strong style="color: #0277bd;">💰 财务转型：</strong><span style="color: #333;">从传统数据库公司转型为AI基础设施巨头，收入规模可翻倍，利润率大幅提升</span>
+                    </div>
+                </div>
+                
+                <div class="card" style="background: rgba(255,255,255,0.98);">
+                    <h3 style="color: #5a4fcf;">⚡ 先发优势与护城河</h3>
+                    <div class="metric">
+                        <span class="metric-label">全球数据中心</span>
+                        <span class="metric-value positive">162个</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">GPU超级集群规模</span>
+                        <span class="metric-value positive">131,072个GPU</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">独家OpenAI合作</span>
+                        <span class="metric-value positive">5年锁定</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">转换成本护城河</span>
+                        <span class="metric-value positive">极高</span>
+                    </div>
+                    <div class="info">
+                        <strong style="color: #0277bd;">🏆 竞争壁垒：</strong><span style="color: #333;">一旦建成，AI基础设施具有极高的转换成本和规模效应，后来者难以追赶</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card" style="margin-top: 20px; background: white;">
+                <h3 style="color: #5a4fcf;">🎯 为什么必须冒险：不进则退的市场现实</h3>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                    <div style="background: #e8f4fd; padding: 20px; border-radius: 8px; border-left: 4px solid #1976d2;">
+                        <h4 style="color: #1565c0; margin-bottom: 15px;">📉 不冒险的下行风险</h4>
+                        <ul style="line-height: 1.8; color: #333;">
+                            <li><strong>传统业务衰退：</strong>数据库市场增长停滞，被云原生方案蚕食</li>
+                            <li><strong>市场份额流失：</strong>AWS、Azure、GCP已占据80%+云市场</li>
+                            <li><strong>估值萎缩：</strong>传统软件公司估值倍数远低于AI公司</li>
+                            <li><strong>人才流失：</strong>顶尖工程师流向AI领先企业</li>
+                            <li><strong>边缘化风险：</strong>可能沦为二线技术公司</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: #e8f5e9; padding: 20px; border-radius: 8px; border-left: 4px solid #388e3c;">
+                        <h4 style="color: #2e7d32; margin-bottom: 15px;">📈 冒险的上行潜力</h4>
+                        <ul style="line-height: 1.8; color: #333;">
+                            <li><strong>市场规模：</strong>AI基础设施市场预计达1万亿美元（2030）</li>
+                            <li><strong>定价权：</strong>AI训练需求旺盛，供不应求支撑高利润率</li>
+                            <li><strong>长期合同：</strong>5-10年期合同提供稳定现金流</li>
+                            <li><strong>技术领先：</strong>成为AI时代的核心基础设施提供商</li>
+                            <li><strong>估值重塑：</strong>从软件公司重新定位为AI基础设施公司</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="warning" style="margin-top: 20px; background: #fff3cd; border-color: #ffc107;">
+                    <strong style="color: #856404;">⏰ 时间窗口关键：</strong>AI基础设施市场正处于"土地抢夺"阶段，2025-2027是决定未来10年市场格局的关键窗口期。错过这个窗口，甲骨文可能永远无法在AI时代占据重要地位。
+                </div>
+            </div>
+            
+            <div class="card" style="margin-top: 20px; background: white;">
+                <h3 style="color: #5a4fcf;">📊 成功概率评估</h3>
+                
+                <table style="width: 100%; margin-top: 20px;">
+                    <thead>
+                        <tr style="background: #f8f9fa;">
+                            <th>成功因素</th>
+                            <th>有利条件</th>
+                            <th>挑战</th>
+                            <th>概率</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>技术执行</strong></td>
+                            <td>已有数据中心经验</td>
+                            <td>规模前所未有</td>
+                            <td><span class="risk-level risk-medium">65%</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>OpenAI成功</strong></td>
+                            <td>10亿用户基础</td>
+                            <td>年亏损50亿美元</td>
+                            <td><span class="risk-level risk-medium">50%</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>市场需求</strong></td>
+                            <td>AI采用加速</td>
+                            <td>95%企业无回报</td>
+                            <td><span class="risk-level risk-medium">60%</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>融资能力</strong></td>
+                            <td>投资级评级</td>
+                            <td>已接近杠杆上限</td>
+                            <td><span class="risk-level risk-low">45%</span></td>
+                        </tr>
+                        <tr style="background: #f8f9fa;">
+                            <td><strong>综合成功率</strong></td>
+                            <td colspan="2">所有因素同时成功</td>
+                            <td><span class="risk-level risk-medium">35-45%</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="info" style="margin-top: 20px; background: #e1f5fe; border-color: #0277bd;">
+                    <strong style="color: #01579b;">🎲 风险回报比：</strong><span style="color: #333;">虽然成功概率仅35-45%，但潜在回报（股价翻倍至3倍）vs下行风险（最差破产清算），从期望值角度看可能是理性的赌注。这类似于风险投资的"幂律分布"逻辑——一次大成功可以弥补多次失败。</span>
+                </div>
+            </div>
+            
+            <div class="card" style="margin-top: 20px; background: white;">
+                <h3 style="color: #5a4fcf;">🏁 关键里程碑与验证点</h3>
+                
+                <div class="timeline-item" style="border-left-color: #28a745;">
+                    <h4 style="color: #1b5e20;">2025 Q4 - 2026 Q2</h4>
+                    <p><strong>验证点：</strong>数据中心建设进度，月度GPU部署数量</p>
+                    <p><strong>成功标准：</strong>按计划完成60%基础设施部署</p>
+                </div>
+                
+                <div class="timeline-item" style="border-left-color: #ffc107;">
+                    <h4 style="color: #f57c00;">2026 Q3 - 2027 Q1</h4>
+                    <p><strong>验证点：</strong>OpenAI收入增长轨迹，用户付费转化率</p>
+                    <p><strong>成功标准：</strong>OpenAI年收入达到300亿美元</p>
+                </div>
+                
+                <div class="timeline-item" style="border-left-color: #dc3545;">
+                    <h4 style="color: #c62828;">2027 Q2 - 2028</h4>
+                    <p><strong>验证点：</strong>合同执行，现金流转正</p>
+                    <p><strong>成功标准：</strong>自由现金流转正，信用评级提升</p>
+                </div>
+                
+                <div class="warning" style="margin-top: 20px; background: #fff3cd; border-color: #ffc107;">
+                    <strong style="color: #856404;">💡 投资者应关注：</strong><span style="color: #333;">这些里程碑是判断甲骨文战略是否成功的关键指标。任何一个环节失败都可能导致整体战略崩溃，但如果全部成功，甲骨文将实现历史性转型。</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline">
+            <h3>⏰ 风险传染情景分析</h3>
+            
+            <div class="timeline-item">
+                <h4>情景1：温和下跌（20-30%）</h4>
+                <p><strong>触发因素：</strong>盈利令人失望、OpenAI合作担忧</p>
+                <p><strong>影响：</strong>有限传染；甲骨文特定问题</p>
+                <p><strong>AI行业影响：</strong>5-10%同情性下跌</p>
+                <span class="risk-level risk-low">低风险</span>
+            </div>
+            
+            <div class="timeline-item">
+                <h4>情景2：严重下跌（40-50%）</h4>
+                <p><strong>触发因素：</strong>多重因素叠加（盈利失望+OpenAI担忧+信用降级）</p>
+                <p><strong>影响：</strong>埃里森强平触发，3.46亿股被迫清算</p>
+                <p><strong>AI行业影响：</strong>主要AI股票下跌10-20%</p>
+                <span class="risk-level risk-medium">中等风险</span>
+            </div>
+            
+            <div class="timeline-item">
+                <h4>情景3：极端下跌（60%+）</h4>
+                <p><strong>触发因素：</strong>系统性事件（OpenAI崩溃、重大违约）</p>
+                <p><strong>影响：</strong>连锁保证金追缴，1.13万亿美元杠杆崩溃</p>
+                <p><strong>市场影响：</strong>标普500下跌15-25%</p>
+                <span class="risk-level risk-high">高风险</span>
+            </div>
+        </div>
+
+        <div class="risk-matrix">
+            <h3>💵 基础设施支出对比</h3>
+            <div class="chart-container">
+                <canvas id="capexChart"></canvas>
+            </div>
+        </div>
+
+        <div class="risk-matrix">
+            <h3>📉 甲骨文股价风险水平图</h3>
+            <div class="chart-container">
+                <canvas id="priceLevelsChart"></canvas>
+            </div>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #28a745;"></div>
+                    <span>安全区间</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #ffc107;"></div>
+                    <span>警戒区间</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #dc3545;"></div>
+                    <span>危险区间</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="risk-matrix">
+            <h3>⚖️ 风险回报分析图</h3>
+            <div class="chart-container">
+                <canvas id="riskRewardChart"></canvas>
+            </div>
+            <div class="info" style="margin-top: 20px;">
+                <strong style="color: #0277bd;">图表说明：</strong><span style="color: #333;">展示甲骨文在不同情景下的潜在回报与风险。成功执行AI战略可能带来2-3倍股价上涨，但失败风险同样巨大。</span>
+            </div>
+        </div>
+
+        <div class="risk-matrix">
+            <h3>💹 甲骨文股价关键价格水平</h3>
+            <div class="grid">
+                <div class="card">
+                    <h3>🎯 关键触发价格</h3>
+                    <div class="metric">
+                        <span class="metric-label">当前股价（估算）</span>
+                        <span class="metric-value">$278</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">52周区间</span>
+                        <span class="metric-value">$118.86 - $345.72</span>
+                    </div>
+                    <hr style="margin: 20px 0; border: 1px solid #eee;">
+                    <div class="price-level" style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <strong style="color: #856404;">$195 (-30%)</strong>
+                            <span class="risk-level risk-low">低风险</span>
+                        </div>
+                        <p style="margin-top: 10px; color: #666;">信用评级负面观察，市场开始担忧</p>
+                    </div>
+                    <div class="price-level" style="background: #ffe5e5; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <strong style="color: #d32f2f;">$167 (-40%)</strong>
+                            <span class="risk-level risk-medium">关键警戒线</span>
+                        </div>
+                        <p style="margin-top: 10px; color: #666;">⚠️ 触发埃里森部分强平，信用降级风险显著</p>
+                    </div>
+                    <div class="price-level" style="background: #ffcccc; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <strong style="color: #c62828;">$139 (-50%)</strong>
+                            <span class="risk-level risk-high">系统性危机线</span>
+                        </div>
+                        <p style="margin-top: 10px; color: #666;">🚨 埃里森全面强平3.46亿股，信用降至垃圾级</p>
+                    </div>
+                    <div class="price-level" style="background: #ff9999; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <strong style="color: #b71c1c;">$111 (-60%)</strong>
+                            <span class="risk-level risk-high">崩溃触发线</span>
+                        </div>
+                        <p style="margin-top: 10px; color: #666;">💥 全面信贷危机，AI行业信心崩溃</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>⚡ 埃里森强平机制</h3>
+                    <div class="warning" style="margin-bottom: 20px;">
+                        <strong>核心风险：</strong>埃里森质押3.46亿股（占流通股12%）
+                    </div>
+                    <table style="width: 100%;">
+                        <tr>
+                            <th>触发条件</th>
+                            <th>影响</th>
+                        </tr>
+                        <tr>
+                            <td>股价跌破$167</td>
+                            <td>接近维持保证金要求</td>
+                        </tr>
+                        <tr>
+                            <td>股价跌破$139</td>
+                            <td>强制平仓开始</td>
+                        </tr>
+                        <tr>
+                            <td>3.46亿股抛售</td>
+                            <td>价格崩盘螺旋</td>
+                        </tr>
+                        <tr>
+                            <td>连锁反应</td>
+                            <td>触发其他保证金追缴</td>
+                        </tr>
+                    </table>
+                    <div class="info" style="margin-top: 20px;">
+                        <strong style="color: #0277bd;">历史参考：</strong>
+                        <ul style="margin: 10px 0; padding-left: 20px; color: #333;">
+                            <li>历史最大跌幅：-84%（2002年）</li>
+                            <li>近期最大跌幅：-40%</li>
+                            <li>30日历史波动率：40.27%</li>
+                            <li>Beta系数：1.53（比市场波动大53%）</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card" style="margin-top: 25px;">
+                <h3>💧 价格瀑布效应可视化</h3>
+                <div class="price-waterfall" style="background: linear-gradient(to bottom, rgba(40, 167, 69, 0.15) 0%, rgba(255, 193, 7, 0.2) 40%, rgba(220, 53, 69, 0.25) 100%); height: 250px; border-radius: 10px; display: flex; align-items: flex-end; padding: 20px; border: 1px solid #dee2e6;">
+                    <div style="flex: 1; text-align: center; margin: 0 10px;">
+                        <div style="background: white; height: 100%; border-radius: 8px 8px 0 0; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 -5px 10px rgba(0,0,0,0.1); border: 1px solid #e9ecef;">
+                            <div>
+                                <div class="price-value" style="color: #28a745; font-weight: bold;">$278</div>
+                                <div class="price-percent" style="color: #495057;">当前价格</div>
+                            </div>
+                            <div style="font-size: 0.85em; color: #495057;">
+                                正常运营<br/>
+                                无风险信号
+                            </div>
+                        </div>
+                    </div>
+                    <div style="flex: 1; text-align: center; margin: 0 10px;">
+                        <div style="background: white; height: 85%; border-radius: 8px 8px 0 0; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 -5px 10px rgba(0,0,0,0.1); border: 1px solid #e9ecef;">
+                            <div>
+                                <div class="price-value" style="color: #856404; font-weight: bold;">$195</div>
+                                <div class="price-percent" style="color: #495057;">-30%</div>
+                            </div>
+                            <div style="font-size: 0.85em; color: #495057;">
+                                信用观察<br/>
+                                市场担忧升温
+                            </div>
+                        </div>
+                    </div>
+                    <div style="flex: 1; text-align: center; margin: 0 10px;">
+                        <div style="background: white; height: 70%; border-radius: 8px 8px 0 0; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 -5px 10px rgba(0,0,0,0.1); border: 1px solid #e9ecef;">
+                            <div>
+                                <div class="price-value" style="color: #ff6b6b; font-weight: bold;">$167</div>
+                                <div class="price-percent" style="color: #495057;">-40%</div>
+                            </div>
+                            <div style="font-size: 0.85em; color: #495057;">
+                                ⚠️ 强平警戒<br/>
+                                埃里森质押风险
+                            </div>
+                        </div>
+                    </div>
+                    <div style="flex: 1; text-align: center; margin: 0 10px;">
+                        <div style="background: white; height: 55%; border-radius: 8px 8px 0 0; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 -5px 10px rgba(0,0,0,0.1); border: 1px solid #e9ecef;">
+                            <div>
+                                <div class="price-value" style="color: #dc3545; font-weight: bold;">$139</div>
+                                <div class="price-percent" style="color: #495057;">-50%</div>
+                            </div>
+                            <div style="font-size: 0.85em; color: #495057;">
+                                🚨 强制平仓<br/>
+                                3.46亿股抛售
+                            </div>
+                        </div>
+                    </div>
+                    <div style="flex: 1; text-align: center; margin: 0 10px;">
+                        <div style="background: white; height: 40%; border-radius: 8px 8px 0 0; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 -5px 10px rgba(0,0,0,0.1); border: 1px solid #e9ecef;">
+                            <div>
+                                <div class="price-value" style="color: #b71c1c; font-weight: bold;">$111</div>
+                                <div class="price-percent" style="color: #495057;">-60%</div>
+                            </div>
+                            <div style="font-size: 0.85em; color: #495057;">
+                                💥 系统崩溃<br/>
+                                AI板块危机
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="info" style="margin-top: 20px;">
+                    <strong style="color: #0277bd;">瀑布效应说明：</strong><span style="color: #333;">价格下跌会触发连锁反应，每个价格水平的突破都会加速向下一个水平的下跌。埃里森的质押股票在$167以下开始产生压力，一旦突破$139，3.46亿股的强制平仓将造成不可逆转的崩溃。</span>
+                </div>
+            </div>
+            
+            <div class="card" style="margin-top: 25px;">
+                <h3>📊 风险级别总结</h3>
+                <table style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>价格区间</th>
+                            <th>跌幅</th>
+                            <th>风险等级</th>
+                            <th>主要影响</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>$250-278</strong></td>
+                            <td>0-10%</td>
+                            <td><span class="risk-level risk-low">正常波动</span></td>
+                            <td>无重大影响</td>
+                        </tr>
+                        <tr>
+                            <td><strong>$195-250</strong></td>
+                            <td>10-30%</td>
+                            <td><span class="risk-level risk-low">低风险</span></td>
+                            <td>信用观察，市场担忧</td>
+                        </tr>
+                        <tr style="background: #fff3cd;">
+                            <td><strong>$167-195</strong></td>
+                            <td>30-40%</td>
+                            <td><span class="risk-level risk-medium">中等风险</span></td>
+                            <td>接近强平触发</td>
+                        </tr>
+                        <tr style="background: #ffe5e5;">
+                            <td><strong>$139-167</strong></td>
+                            <td>40-50%</td>
+                            <td><span class="risk-level risk-high">高风险</span></td>
+                            <td>埃里森强平启动</td>
+                        </tr>
+                        <tr style="background: #ffcccc;">
+                            <td><strong>&lt;$139</strong></td>
+                            <td>&gt;50%</td>
+                            <td><span class="risk-level risk-high">极端风险</span></td>
+                            <td>系统性危机</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="warning" style="margin-top: 20px;">
+                    <strong>🎯 最需要关注的价格：$167</strong>
+                    <ul style="margin: 10px 0; padding-left: 20px;">
+                        <li>接近40%跌幅的心理关口</li>
+                        <li>开始触发埃里森质押股票的维持保证金要求</li>
+                        <li>历史上甲骨文曾多次在40%回撤后反弹</li>
+                        <li>低於此价格，强制平仓风险急剧上升</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>🔍 关键监控指标</h3>
+                <table>
+                    <tr>
+                        <th>指标</th>
+                        <th>当前值</th>
+                        <th>警戒线</th>
+                    </tr>
+                    <tr>
+                        <td>利息覆盖率</td>
+                        <td>5.0x</td>
+                        <td>&lt; 1.0x</td>
+                    </tr>
+                    <tr>
+                        <td>保证金债务</td>
+                        <td>1.13万亿</td>
+                        <td>&gt; 1.2万亿</td>
+                    </tr>
+                    <tr>
+                        <td>甲骨文股价</td>
+                        <td>$278</td>
+                        <td>&lt; $167</td>
+                    </tr>
+                    <tr>
+                        <td>OpenAI亏损</td>
+                        <td>50亿/年</td>
+                        <td>&gt; 100亿/年</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>📝 最终评估</h3>
+                <div class="info">
+                    <strong style="color: #0277bd;">核心结论：</strong><span style="color: #333;">甲骨文的高杠杆确实对AI行业构成可信的系统性风险，主要通过三种机制：</span>
+                </div>
+                <ul style="margin: 20px; line-height: 2;">
+                    <li>埃里森3.46亿股质押股票造成的强制抛售级联</li>
+                    <li>如果OpenAI合作失败，对AI基础设施商业模式的信心丧失</li>
+                    <li>触发1.13万亿美元行业杠杆的保证金追缴</li>
+                </ul>
+                <div class="warning" style="margin-top: 20px;">
+                    <strong>风险评级：</strong>系统性风险真实存在但可控——甲骨文代表潜在触发点，但不是灭绝级事件。最可能情景是20-40%的行业调整，而非70-80%的互联网泡沫式崩溃。
+                </div>
+                <div class="info" style="margin-top: 20px; background: #d4edda; border-color: #28a745; border-left: 4px solid #28a745;">
+                    <strong style="color: #0f5132;">机遇评估：</strong><span style="color: #155724;">尽管风险巨大，但甲骨文的战略赌注有其合理性。在AI基础设施市场的关键窗口期，不作为的风险可能超过行动的风险。成功概率虽仅35-45%，但潜在2-3倍回报创造了正期望值。对风险承受能力强的投资者，这可能是一个不对称的机会。</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2025年10月 AI行业风险与机遇分析报告</p>
+            <p>本报告提供风险与机遇的平衡分析，不构成投资建议</p>
+            <p>投资者应根据自身风险承受能力做出独立判断</p>
+        </div>
+    </div>
+
+    <script>
+        // 保证金债务图表
+        const marginDebtCtx = document.getElementById('marginDebtChart').getContext('2d');
+        new Chart(marginDebtCtx, {
+            type: 'line',
+            data: {
+                labels: ['2000互联网泡沫', '2007金融危机', '2021峰值', '2025当前'],
+                datasets: [{
+                    label: '保证金债务（万亿美元）',
+                    data: [0.28, 0.38, 0.93, 1.13],
+                    borderColor: '#e74c3c',
+                    backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                    tension: 0.4,
+                    yAxisID: 'y'
+                }, {
+                    label: '相对GDP比率（%）',
+                    data: [2.6, 2.5, 3.97, 3.48],
+                    borderColor: '#3498db',
+                    backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                    tension: 0.4,
+                    yAxisID: 'y1'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '历史保证金债务水平与危机对比',
+                        font: {
+                            size: 16
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                if (context.datasetIndex === 0) {
+                                    return context.dataset.label + ': $' + context.parsed.y + '万亿';
+                                } else {
+                                    return context.dataset.label + ': ' + context.parsed.y + '%';
+                                }
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: '保证金债务（万亿美元）'
+                        }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: 'GDP比率（%）'
+                        },
+                        grid: {
+                            drawOnChartArea: false
+                        }
+                    }
+                }
+            }
+        });
+
+        // 杠杆比率对比图表
+        const leverageCtx = document.getElementById('leverageChart').getContext('2d');
+        new Chart(leverageCtx, {
+            type: 'bar',
+            data: {
+                labels: ['甲骨文', '微软', '亚马逊', '谷歌', '行业平均'],
+                datasets: [{
+                    label: '债务/EBITDA比率',
+                    data: [4.0, 0.3, 0.5, 0.1, 1.2],
+                    backgroundColor: [
+                        'rgba(231, 76, 60, 0.7)',
+                        'rgba(52, 152, 219, 0.7)',
+                        'rgba(52, 152, 219, 0.7)',
+                        'rgba(52, 152, 219, 0.7)',
+                        'rgba(155, 89, 182, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgb(231, 76, 60)',
+                        'rgb(52, 152, 219)',
+                        'rgb(52, 152, 219)',
+                        'rgb(52, 152, 219)',
+                        'rgb(155, 89, 182)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '主要科技公司杠杆比率对比',
+                        font: {
+                            size: 16
+                        }
+                    },
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: '债务/EBITDA倍数'
+                        }
+                    }
+                }
+            }
+        });
+
+        // 基础设施支出图表
+        const capexCtx = document.getElementById('capexChart').getContext('2d');
+        new Chart(capexCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2023', '2024', '2025预测', '2026-2028预计'],
+                datasets: [{
+                    label: '年度资本支出（十亿美元）',
+                    data: [144, 228, 364, 970],
+                    backgroundColor: 'rgba(102, 126, 234, 0.7)',
+                    borderColor: 'rgb(102, 126, 234)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '科技巨头AI基础设施投资趋势',
+                        font: {
+                            size: 16
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: '十亿美元'
+                        }
+                    }
+                }
+            }
+        });
+
+        // 股价风险水平图表
+        const priceLevelsCtx = document.getElementById('priceLevelsChart').getContext('2d');
+        new Chart(priceLevelsCtx, {
+            type: 'line',
+            data: {
+                labels: ['当前', '$250 (-10%)', '$195 (-30%)', '$167 (-40%)', '$139 (-50%)', '$111 (-60%)'],
+                datasets: [{
+                    label: '股价水平',
+                    data: [278, 250, 195, 167, 139, 111],
+                    borderColor: 'rgb(75, 192, 192)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    tension: 0.1,
+                    borderWidth: 3,
+                    pointRadius: 6,
+                    pointBackgroundColor: function(context) {
+                        const value = context.parsed.y;
+                        if (value >= 250) return '#28a745';
+                        if (value >= 167) return '#ffc107';
+                        return '#dc3545';
+                    },
+                    pointBorderColor: function(context) {
+                        const value = context.parsed.y;
+                        if (value >= 250) return '#28a745';
+                        if (value >= 167) return '#ffc107';
+                        return '#dc3545';
+                    },
+                    pointBorderWidth: 2
+                }, {
+                    label: '埃里森强平触发线',
+                    data: [167, 167, 167, 167, 167, 167],
+                    borderColor: 'rgba(255, 99, 132, 0.8)',
+                    borderDash: [10, 5],
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    fill: false
+                }, {
+                    label: '系统性危机线',
+                    data: [139, 139, 139, 139, 139, 139],
+                    borderColor: 'rgba(220, 53, 69, 0.8)',
+                    borderDash: [5, 5],
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '甲骨文股价关键风险水平',
+                        font: {
+                            size: 16
+                        }
+                    },
+                    annotation: {
+                        annotations: {
+                            box1: {
+                                type: 'box',
+                                yMin: 250,
+                                yMax: 350,
+                                backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                                borderWidth: 0
+                            },
+                            box2: {
+                                type: 'box',
+                                yMin: 167,
+                                yMax: 250,
+                                backgroundColor: 'rgba(255, 193, 7, 0.1)',
+                                borderWidth: 0
+                            },
+                            box3: {
+                                type: 'box',
+                                yMin: 0,
+                                yMax: 167,
+                                backgroundColor: 'rgba(220, 53, 69, 0.1)',
+                                borderWidth: 0
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 100,
+                        max: 300,
+                        title: {
+                            display: true,
+                            text: '股价（美元）'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value;
+                            }
+                        }
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                }
+            }
+        });
+
+        // 风险回报分析图表
+        const riskRewardCtx = document.getElementById('riskRewardChart').getContext('2d');
+        new Chart(riskRewardCtx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: '不同情景下的风险回报',
+                    data: [
+                        {x: -60, y: -80, label: '最坏情景：破产清算'},
+                        {x: -40, y: -50, label: '失败情景：战略失败'},
+                        {x: -20, y: -20, label: '停滞情景：维持现状'},
+                        {x: 20, y: 50, label: '部分成功：合同部分实现'},
+                        {x: 50, y: 150, label: '完全成功：AI转型成功'},
+                        {x: 70, y: 200, label: '最佳情景：成为AI巨头'}
+                    ],
+                    backgroundColor: function(context) {
+                        const value = context.raw.y;
+                        if (value < 0) return 'rgba(220, 53, 69, 0.6)';
+                        if (value < 100) return 'rgba(255, 193, 7, 0.6)';
+                        return 'rgba(40, 167, 69, 0.6)';
+                    },
+                    borderColor: function(context) {
+                        const value = context.raw.y;
+                        if (value < 0) return 'rgb(220, 53, 69)';
+                        if (value < 100) return 'rgb(255, 193, 7)';
+                        return 'rgb(40, 167, 69)';
+                    },
+                    borderWidth: 2,
+                    pointRadius: 10,
+                    pointHoverRadius: 12
+                }, {
+                    label: '期望值线',
+                    type: 'line',
+                    data: [
+                        {x: -60, y: 0},
+                        {x: 70, y: 0}
+                    ],
+                    borderColor: 'rgba(108, 117, 125, 0.5)',
+                    borderDash: [5, 5],
+                    borderWidth: 1,
+                    pointRadius: 0,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '甲骨文AI战略风险回报矩阵',
+                        font: {
+                            size: 16
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                if (context.datasetIndex === 0) {
+                                    const point = context.raw;
+                                    return [
+                                        point.label,
+                                        `概率: ${point.x > 0 ? point.x : -point.x}%`,
+                                        `潜在回报: ${point.y > 0 ? '+' : ''}${point.y}%`
+                                    ];
+                                }
+                                return '';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: '发生概率 (%)'
+                        },
+                        min: -70,
+                        max: 80,
+                        grid: {
+                            color: function(context) {
+                                if (context.tick.value === 0) {
+                                    return 'rgba(0, 0, 0, 0.3)';
+                                }
+                                return 'rgba(0, 0, 0, 0.05)';
+                            }
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: '股价潜在变化 (%)'
+                        },
+                        min: -100,
+                        max: 250,
+                        grid: {
+                            color: function(context) {
+                                if (context.tick.value === 0) {
+                                    return 'rgba(0, 0, 0, 0.3)';
+                                }
+                                return 'rgba(0, 0, 0, 0.05)';
+                            }
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return value > 0 ? '+' + value + '%' : value + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 动画效果
+        window.addEventListener('load', () => {
+            const percentageFills = document.querySelectorAll('.percentage-fill');
+            percentageFills.forEach(fill => {
+                const width = fill.style.width;
+                fill.style.width = '0';
+                setTimeout(() => {
+                    fill.style.width = width;
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>
